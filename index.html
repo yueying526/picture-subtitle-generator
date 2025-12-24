@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片字幕生成器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="logo-stamp">
+            <div class="logo-inner">
+                <span class="logo-text">YUEYING</span>
+                <span class="logo-sub">OFFICIAL</span>
+            </div>
+        </div>
+        <header>
+            <h1>图片字幕生成器</h1>
+            <p class="subtitle">轻松制作电影感字幕长图</p>
+        </header>
+
+        <main class="app-layout">
+            <!-- 左侧控制区 -->
+            <section class="controls-panel">
+                <div class="card">
+                    <div class="form-group file-upload">
+                        <label for="imageInput" class="custom-file-upload">
+                            选择图片
+                        </label>
+                        <input type="file" id="imageInput" accept="image/*">
+                        <span id="fileName" class="file-name">未选择文件</span>
+                    </div>
+
+                    <div class="settings-grid">
+                        <div class="form-group">
+                            <label for="sliceHeight">字幕高度 (px)</label>
+                            <input type="number" id="sliceHeight" value="60" min="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="fontSize">字体大小 (px)</label>
+                            <input type="number" id="fontSize" value="32" min="10">
+                        </div>
+                        <div class="form-group">
+                            <label for="fontColor">字体颜色</label>
+                            <div class="color-picker-wrapper">
+                                <input type="color" id="fontColor" value="#FFFFFF">
+                                <span class="color-value">#FFFFFF</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="strokeColor">轮廓颜色</label>
+                            <div class="color-picker-wrapper">
+                                <input type="color" id="strokeColor" value="#000000">
+                                <span class="color-value">#000000</span>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="strokeWidth">描边宽度 (px)</label>
+                            <input type="number" id="strokeWidth" value="2" min="0">
+                        </div>
+                         <div class="form-group">
+                            <label for="marginBottom">底部边距 (px)</label>
+                            <input type="number" id="marginBottom" value="20" min="0" title="第一行文字距离底部的距离">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subtitleText">字幕内容 (每一行对应一张切片)</label>
+                        <textarea id="subtitleText" placeholder="请输入字幕，换行分隔...
+例如：
+别吵
+我在给自己写钓鱼网站呢
+对，这年头
+咱们猫咪都能自己写代码了"></textarea>
+                    </div>
+
+                    <div class="actions">
+                        <button id="generateBtn" class="btn btn-primary">生成字幕图片</button>
+                        <button id="downloadBtn" class="btn btn-secondary" disabled>保存图片</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 右侧预览区 -->
+            <section class="preview-panel">
+                <div class="card preview-card">
+                    <div id="previewContainer" class="preview-container">
+                        <div class="placeholder-text">
+                            请上传图片并输入字幕后点击生成
+                        </div>
+                        <canvas id="resultCanvas"></canvas>
+                        <img id="resultImage" alt="生成结果" style="display: none;">
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

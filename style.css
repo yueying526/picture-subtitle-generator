@@ -1,0 +1,336 @@
+:root {
+    /* 清新莫兰迪色系 (Fresh Morandi Palette) */
+    --bg-color: #F2F4F3;          /* 浅灰绿背景 */
+    --card-bg: #FFFFFF;           /* 卡片白 */
+    --text-primary: #5A6A72;      /* 深灰蓝文字 */
+    --text-secondary: #8C9CA5;    /* 浅灰蓝文字 */
+    --accent-green: #99B0A6;      /* 莫兰迪绿 (Sage) */
+    --accent-green-hover: #82998F;
+    --accent-blue: #A3B9C9;       /* 莫兰迪蓝 (Dusty Blue) */
+    --accent-blue-hover: #8EA5B6;
+    --border-color: #E0E5E8;
+    --input-bg: #FAFCFB;
+    --logo-color: #B88E8E;        /* 复古红褐色 */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative; /* 为 logo 绝对定位提供参照 */
+}
+
+/* 复古邮戳 Logo 样式 */
+.logo-stamp {
+    position: absolute;
+    top: 0;
+    left: 20px; /* 或者 right: 20px，看用户喜好，这里放左上角或者右上角 */
+    width: 100px;
+    height: 100px;
+    border: 3px double var(--logo-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-15deg);
+    opacity: 0.8;
+    z-index: 10;
+    pointer-events: none; /* 防止遮挡点击 */
+    background-image: radial-gradient(circle, transparent 60%, rgba(184, 142, 142, 0.1) 100%);
+    box-shadow: 0 0 0 1px rgba(184, 142, 142, 0.2) inset;
+}
+
+.logo-inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 80%;
+    border: 1px dashed var(--logo-color);
+    border-radius: 50%;
+}
+
+.logo-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--logo-color);
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.logo-sub {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.6rem;
+    color: var(--logo-color);
+    margin-top: 4px;
+    letter-spacing: 2px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 20px; /* 为 logo 留点空间，如果重叠的话 */
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.app-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .app-layout {
+        grid-template-columns: 1fr;
+    }
+    .logo-stamp {
+        width: 80px;
+        height: 80px;
+        left: 10px;
+        top: -10px;
+    }
+    .logo-text {
+        font-size: 0.9rem;
+    }
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+/* 控制面板样式 */
+.controls-panel .card {
+    position: sticky;
+    top: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input[type="number"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(153, 176, 166, 0.2);
+}
+
+textarea {
+    height: 150px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+/* 文件上传按钮美化 */
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 12px 24px;
+    cursor: pointer;
+    background-color: var(--input-bg);
+    border: 1px dashed var(--accent-blue);
+    border-radius: 8px;
+    color: var(--accent-blue);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.custom-file-upload:hover {
+    background-color: #F0F7FA;
+    border-color: var(--accent-blue-hover);
+}
+
+.file-name {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    word-break: break-all;
+}
+
+/* 颜色选择器美化 */
+.color-picker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    background: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.color-value {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+}
+
+/* 栅格布局设置项 */
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* 按钮样式 */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background-color: var(--accent-green);
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--accent-green-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(153, 176, 166, 0.4);
+}
+
+.btn-secondary {
+    background-color: var(--accent-blue);
+    color: white;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background-color: var(--accent-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(163, 185, 201, 0.4);
+}
+
+/* 预览区样式 */
+.preview-panel {
+    display: flex;
+    justify-content: center;
+}
+
+.preview-container {
+    width: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FAFCFB;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.placeholder-text {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 20px;
+}
+
+#resultCanvas {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: none; /* 默认隐藏，生成后显示 */
+}
+
+#resultImage {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
